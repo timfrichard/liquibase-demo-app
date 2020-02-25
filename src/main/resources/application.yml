@@ -1,0 +1,104 @@
+management:
+  endpoint:
+    flyway:
+      enabled: true
+  endpoints:
+    web:
+      exposure:
+        include: "*"
+spring:
+  hsql:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: true
+  liquibase:
+    change-log: classpath:db/hsql-db/db.master.xml
+    enabled: true
+    drop-first: false
+    contexts: "local"
+    testRollbackOnUpdate: false
+
+---
+
+spring:
+  profiles: hsql-persisted-profile
+  datasource:
+    url: "jdbc:hsqldb:hsql://localhost:9091/liquibaseDB"
+    username: "EMPLOYEE_APP_USER"
+    password: "mynonsecretpassw0rd"
+  hsql:
+    console:
+      enabled: true
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    open-in-view: true
+  liquibase:
+    change-log: classpath:db/hsql-persisted-db/db.master.xml
+    enabled: true
+    drop-first: false
+    contexts: "dev"
+    testRollbackOnUpdate: false
+com:
+  sparkys: 
+    online: 
+      orders: 
+        employee: 
+          db: 
+            login: 
+              timeout: "30"
+            schema: 
+              name: "PUBLIC"
+            url: "jdbc:hsqldb:hsql://localhost:9091/liquibaseDB"
+            user: 
+              name: "DB_OWNER_USER"
+              password: "mysecret"
+
+---
+
+spring:
+  profiles: postgresql-profile
+  datasource:
+    driver-class-name: "org.postgresql.Driver"
+    platform: "postgresql"
+    password: "mynonsecretpassw0rd"
+    url: "jdbc:postgresql://192.168.99.104:5432/my_liquibase_db"
+    username: "EMPLOYEE_APP_USER"
+  jpa:
+    hibernate:
+      ddl-auto: validate
+    properties:
+      hibernate:
+        jdbc:
+          lob:
+            non_contextual_creation: true
+        temp:
+          use_jdbc_metadata_defaults: false
+    open-in-view: true
+  liquibase:
+    change-log: classpath:db/postgresql-db/db.master.xml
+    contexts: "production"
+    drop-first: false
+    enabled: true
+    password: "mysecret"
+    url: "jdbc:postgresql://192.168.99.104:5432/my_liquibase_db"
+    user: "DB_OWNER_USER"
+com:
+  sparkys: 
+    online: 
+      orders: 
+        employee: 
+          db: 
+            login: 
+              timeout: "30"
+            schema: 
+              name: "PUBLIC"
+            url: "jdbc:postgresql://localhost:5442/my_liquibase_db"
+            user: 
+              name: "DB_OWNER_USER"
+              password: "mysecrett"
+
+---
