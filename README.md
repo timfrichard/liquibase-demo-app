@@ -12,6 +12,7 @@ Use Terminal to go to directory ../postgresql-init-stuff
 6. Run the following command: ```cd /docker-entrypoint-initdb.d```
 7. Run the following command: ```psql -d my_liquibase_db -f initialize-demo-db.sql -U postgres```
 8. Run the following command:  ```exit``` {You should have exited the container OS}
+9. Run the demo application.
   
 ## Stop and remove Docker container
 1. Using the *\<CONTAINER ID\>* provided from #3 run the following command:  ```docker stop <CONTAINER ID>```
