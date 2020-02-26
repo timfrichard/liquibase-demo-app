@@ -7,6 +7,8 @@ management:
       exposure:
         include: "*"
 spring:
+  datasource:
+    platform: "hsqldb"
   hsql:
     console:
       enabled: true

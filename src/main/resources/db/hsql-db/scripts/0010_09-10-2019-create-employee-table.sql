@@ -1,5 +1,5 @@
 -- liquibase formatted sql
--- changeset timmy.richard:001.0  context:dev and test and production and local
+-- changeset timmy.richard:001.0  context: dev and test and production and local
 -- comment: Comment - Don't cross the street with your eyes closed
 CREATE SCHEMA EMPLOYEES_DB AUTHORIZATION DBA;
 
